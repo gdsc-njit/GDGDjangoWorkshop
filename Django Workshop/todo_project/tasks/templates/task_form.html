@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex justify-center px-4 py-8">
+    <div class="w-full max-w-lg bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="bg-indigo-600 px-6 py-4">
+            <h5 class="text-xl font-semibold text-white text-center flex items-center justify-center">
+                <i class="fas fa-{% if view.title == 'Add Task' %}plus{% else %}edit{% endif %} mr-2"></i>
+                {{ view.title }}
+            </h5>
+        </div>
+        <div class="p-6">
+            <form method="post" class="space-y-6" novalidate>
+                {% csrf_token %}
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Title</label>
+                    {{ form.title }}
+                    <style>
+                        #id_title {
+                            width: 100%;
+                            border-radius: 0.5rem;
+                            border-color: #D1D5DB;
+                            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                        }
+                        #id_title:focus {
+                            border-color: #6366F1;
+                            ring-color: #6366F1;
+                            outline: none;
+                            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+                        }
+                    </style>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                    {{ form.description }}
+                    <style>
+                        #id_description {
+                            width: 100%;
+                            border-radius: 0.5rem;
+                            border-color: #D1D5DB;
+                            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                        }
+                        #id_description:focus {
+                            border-color: #6366F1;
+                            ring-color: #6366F1;
+                            outline: none;
+                            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+                        }
+                    </style>
+                </div>
+                <div class="flex items-center space-x-2">
+                    {{ form.completed }}
+                    <style>
+                        #id_completed {
+                            height: 1rem;
+                            width: 1rem;
+                            border-radius: 0.25rem;
+                            border-color: #D1D5DB;
+                        }
+                        #id_completed:checked {
+                            background-color: #6366F1;
+                            border-color: #6366F1;
+                        }
+                        #id_completed:focus {
+                            outline: none;
+                            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+                        }
+                    </style>
+                    <label class="text-sm font-medium text-gray-700">Completed</label>
+                </div>
+                <button type="submit" class="w-full flex justify-center items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                    <i class="fas fa-save mr-2"></i>
+                    Save Task
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
